@@ -1,0 +1,32 @@
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    env_file:
+      - ./mlflow.env
+    command: >
+      mlflow server --host 0.0.0.0 --port 5000
+      --backend-store-uri postgresql://mlflow:mlflow@postgres:5432/mlflow
+      --artifacts-destination s3://mlflow-artifacts
+    ports: ["5000:5000"]
+    depends_on: [postgres, minio]
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: mlflow
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio12345
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["miniodata:/data"]
+
+volumes:
+  pgdata: {}
+  miniodata: {}

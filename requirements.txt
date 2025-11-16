@@ -10,7 +10,7 @@ pyyaml>=6.0.1,<7.0
 requests>=2.31,<3.0
 
 # === (Optionnel) PyTorch CPU/GPU ===
-# Si nécessaire, dé-commentez les lignes suivantes.
-# pip choisira automatiquement la roue CPU par défaut.
+# Pour CPU/GPU, installez torch/torchvision adaptés à votre OS/CUDA :
+#   https://pytorch.org/get-started/locally/
 # torch>=2.1,<2.4
 # torchvision>=0.16,<0.19

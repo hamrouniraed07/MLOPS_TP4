@@ -23,5 +23,3 @@ UI MLflow : http://localhost:5000
 
 
 Décision : compléter reports/templates/decision_template.md (captures MLflow à l’appui).
-
-::contentReference[oaicite:0]{index=0}
